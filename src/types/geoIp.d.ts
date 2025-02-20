@@ -1,18 +1,14 @@
+
+
+
 export type GeoIp = {
-    status: string;
-    country: string;
-    countryCode: string;
-    region: string;
-    regionName: string;
-    city: string;
-    zip: string;
-    lat: number;
-    lon: number;
-    timezone: string;
-    isp: string;
-    org: string;
-    as: string;
-    query: string;
+    ip: string
+    city: string
+    region: string
+    country: string
+    loc: string
+    org: string
+    timezone: string
 };
 
 

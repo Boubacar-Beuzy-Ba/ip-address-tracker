@@ -10,25 +10,19 @@ import { SearchBar } from "@/components/SearchBar";
 
 
 const InitalGeoIpData = {
-  status: "",
-  country: "",
-  countryCode: "",
-  region: "",
-  regionName: "",
+ ip: "",
   city: "",
-  zip: "",
-  lat: 0,
-  lon: 0,
-  timezone: "",
-  isp: "",
+  region: "",
+  country: "",
+  loc: "",
   org: "",
-  as: "",
-  query: "",
+  timezone: "",
 };
 
 export default function Home() {
   const getIp = getIpData();
   const [ipData, setIpData] = useState<GeoIp>(InitalGeoIpData);
+  const [latitude, longitude] = ipData.loc.split(",").map(Number);
 const fetchData = async () => {
   const ipData = await getIp;
   return setIpData(ipData);
@@ -47,20 +41,20 @@ const fetchData = async () => {
       </div>
       <Card className="max-w-sm sm:max-w-2xl mx-auto bg-white shadow-lg relative z-10 -mt-10 p-3 content-center">
         <CardContent className="flex flex-col sm:flex-row md:divide-x">
-          <InfoCard name="IP Address" description={ipData.query} />
+          <InfoCard name="IP Address" description={ipData.ip} />
           <InfoCard
             name="Location"
             description={`${ipData.city}. ${ipData.region}. ${ipData.country}`}
           />
-          <InfoCard
-            name="Timezone"
-            description={`UTC ${ipData.timezone}`}
-          />
-          <InfoCard name="ISP" description={ipData.isp} />
+          <InfoCard name="Timezone" description={`UTC ${ipData.timezone}`} />
+          <InfoCard name="ISP" description={ipData.org} />
         </CardContent>
       </Card>
       <div className="absolute top-48">
-        <Maps longitude={ipData.lon} latitude={ipData.lat} />
+        <Maps
+          longitude={longitude ? longitude : 14.6937}
+          latitude={latitude ? latitude : -17.4441}
+        />
       </div>
     </div>
   );

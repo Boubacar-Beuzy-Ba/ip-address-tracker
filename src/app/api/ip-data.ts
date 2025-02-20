@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-const baseUrl = "http://ip-api.com/json";
-// const apiKey = "at_sL65Lqrexp5bN8lRj47WrZxIbvhkt";
+const baseUrl = "https://ipinfo.io/json";
+const apiKey = "052eb7cba6a843";
 
 export const getIpData = async (ip?: string) => {
     const url = new URL(baseUrl);
     if (ip) url.searchParams.append("query", ip);
+    url.searchParams.append("token", apiKey);
 
     // let url = `${baseUrl}?apiKey=${apiKey}&ipAddress=${ip}`;
     // if (ip === undefined) {

@@ -27,6 +27,11 @@ const fetchData = async () => {
   const ipData = await getIp;
   return setIpData(ipData);
 };
+  
+  const searchedData = async (ip: string) => {
+    const ipData = await getIpData(ip);
+    return setIpData(ipData);
+  };
 
   useEffect(() => {
     fetchData();
@@ -36,7 +41,7 @@ const fetchData = async () => {
       <div className="w-full pt-10 bg-bannerImg bg-cover text-white h-48 relative">
         <header className="flex flex-col max-w-sm mx-auto">
           <h1 className="text-2xl font-bold text-center">IP Address Tracker</h1>
-          <SearchBar />
+          <SearchBar onSearch={searchedData} />
         </header>
       </div>
       <Card className="max-w-sm sm:max-w-2xl mx-auto bg-white shadow-lg relative z-10 -mt-10 p-3 content-center">

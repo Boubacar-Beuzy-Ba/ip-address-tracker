@@ -3,7 +3,7 @@ import { ChevronRight } from "lucide-react"
 import { Button } from "./ui/button"
 import { Input } from "./ui/input"
 import { z } from "zod"
-import { useForm } from "react-hook-form"
+import {  useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Form,
@@ -13,15 +13,20 @@ import {
 } from "@/components/ui/form";
 
 
+export type IpInputProps = {
+    onSearch: (ip: string) => void
+}
+
+
 const formSchema = z.object({
     ipInput: z.string().min(1, {
-        message: "Please enter a valid IP address or domain"
+        message: "Please enter a valid IP address"
     }).max(100, {
-        message: "Please enter a valid IP address or domain"
+        message: "Please enter a valid IP address"
     }),
 })
 
-export const SearchBar = () => {
+export const SearchBar = ({ onSearch }: IpInputProps) => {
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -30,7 +35,7 @@ export const SearchBar = () => {
     })
 
     function onSubmit(values: z.infer<typeof formSchema>) {
-        console.log(values)
+        onSearch(values.ipInput)
     } 
         
     return (

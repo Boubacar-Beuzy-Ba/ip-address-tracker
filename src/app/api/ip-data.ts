@@ -1,11 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-const baseUrl = "https://geo.ipify.org/api/v2/country,city";
-const apiKey = "at_sL65Lqrexp5bN8lRj47WrZxIbvhkt";
+const baseUrl = "http://ip-api.com/json";
+// const apiKey = "at_sL65Lqrexp5bN8lRj47WrZxIbvhkt";
 
 export const getIpData = async (ip?: string) => {
     const url = new URL(baseUrl);
-    url.searchParams.append("apiKey", apiKey);
-    if (ip) url.searchParams.append("ipAddress", ip);
+    if (ip) url.searchParams.append("query", ip);
 
     // let url = `${baseUrl}?apiKey=${apiKey}&ipAddress=${ip}`;
     // if (ip === undefined) {

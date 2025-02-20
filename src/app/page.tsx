@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { InfoCard } from "@/components/InfoCard";
-import { Map } from "@/components/Map";
+import {  Maps } from "@/components/Maps";
 import { Card, CardContent } from "@/components/ui/card";
 import { getIpData } from "./api/ip-data";
 import { useEffect, useState } from "react";
@@ -10,25 +10,20 @@ import { SearchBar } from "@/components/SearchBar";
 
 
 const InitalGeoIpData = {
-  ip: "",
-  location: {
-    country: "",
-    region: "",
-    city: "",
-    lat: 0,
-    lng: 0,
-    postalCode: "",
-    timezone: "",
-    geonameId: 0,
-  },
-  as: {
-    asn: 0,
-    name: "",
-    route: "",
-    domain: "",
-    type: "",
-  },
+  status: "",
+  country: "",
+  countryCode: "",
+  region: "",
+  regionName: "",
+  city: "",
+  zip: "",
+  lat: 0,
+  lon: 0,
+  timezone: "",
   isp: "",
+  org: "",
+  as: "",
+  query: "",
 };
 
 export default function Home() {
@@ -52,20 +47,20 @@ const fetchData = async () => {
       </div>
       <Card className="max-w-sm sm:max-w-2xl mx-auto bg-white shadow-lg relative z-10 -mt-10 p-3 content-center">
         <CardContent className="flex flex-col sm:flex-row md:divide-x">
-          <InfoCard name="IP Address" description={ipData.ip} />
+          <InfoCard name="IP Address" description={ipData.query} />
           <InfoCard
             name="Location"
-            description={`${ipData.location.city}. ${ipData.location.region}. ${ipData.location.country}`}
+            description={`${ipData.city}. ${ipData.region}. ${ipData.country}`}
           />
           <InfoCard
             name="Timezone"
-            description={`UTC ${ipData.location.timezone}`}
+            description={`UTC ${ipData.timezone}`}
           />
           <InfoCard name="ISP" description={ipData.isp} />
         </CardContent>
       </Card>
       <div className="absolute top-48">
-        <Map longitude={ipData.location.lng} latitude={ipData.location.lat} />
+        <Maps longitude={ipData.lon} latitude={ipData.lat} />
       </div>
     </div>
   );

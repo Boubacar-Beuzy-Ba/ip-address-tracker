@@ -1,21 +1,18 @@
 export type GeoIp = {
-    ip: string;
-    location: {
-        country: string;
-        region: string;
-        city: string;
-        lat: number;
-        lng: number;
-        postalCode: string;
-        timezone: string;
-        geonameId: number;
-    };
-    as: {
-        asn: number;
-        name: string;
-        route: string;
-        domain: string;
-        type: string;
-    };
+    status: string;
+    country: string;
+    countryCode: string;
+    region: string;
+    regionName: string;
+    city: string;
+    zip: string;
+    lat: number;
+    lon: number;
+    timezone: string;
     isp: string;
+    org: string;
+    as: string;
+    query: string;
 };
+
+
